@@ -88,19 +88,32 @@ class ProductItem extends HTMLElement {
 
     let clickButton = document.createElement("button");
     clickButton.onclick = function(e){
-    let cartCount = document.getElementById("cart-count");
-      if (clickButton.textContent == "Add To Cart"){
-        clickButton.textContent = "Remove From Cart";
-        cartCount.innerText = (Number(cartCount.innerText) + 1).toString(); 
-      }
+      let storage = window.localStorage;
+      console.log("item id:", li.dataset.id);
+      let cart = JSON.parse(storage.getItem("cart"));
 
-      else{
-        clickButton.textContent = "Add To Cart";
-        cartCount.innerText = (Number(cartCount.innerText) - 1).toString(); 
+      if(!cart){
+        cart = {};
       }
+     
+      let cartCount = document.getElementById("cart-count");
+        if (clickButton.textContent == "Add To Cart"){
+          clickButton.textContent = "Remove From Cart";
+          cartCount.innerText = (Number(cartCount.innerText) + 1).toString(); 
+          cart["item-" + li.dataset.id] = true;
+          storage.setItem("cart", JSON.stringify(cart));
+          alert("Item Added To Cart");
+        }
+
+        else{
+          clickButton.textContent = "Add To Cart";
+          cartCount.innerText = (Number(cartCount.innerText) - 1).toString(); 
+          delete cart["item-" + li.dataset.id];
+          storage.setItem("cart", JSON.stringify(cart));
+          alert("Item Removed From Cart");
+        }
 
     }
-    clickButton.textContent = "Add To Cart";
 
     shadow.appendChild(style);
     shadow.appendChild(li);
@@ -112,6 +125,4 @@ class ProductItem extends HTMLElement {
   }
   
 }
-
-
 customElements.define('product-item', ProductItem);
