@@ -24,8 +24,10 @@ window.addEventListener('DOMContentLoaded', () => {
     if(!cart){
       cart = {};
     }
-    
-    cart = JSON.parse(cart);
+
+    else{
+      cart = JSON.parse(cart);
+    }
     cartCount.innerText = Object.keys(cart).length.toString();
 
     let items = JSON.parse(storage.getItem("store"));
