@@ -26,9 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
       
   }
   // added to the cart 
-  return Object.assign({}, state, {
-    cart: (new Set(state.cart).add(data.item)),
-  });
+  
   // remove from the cart 
 
 });

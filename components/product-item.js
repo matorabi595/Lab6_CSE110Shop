@@ -77,7 +77,7 @@ class ProductItem extends HTMLElement {
     li.className = "product";
 
     let pic = document.createElement("img");
-    
+
     let p = document.createElement("p");
     p.className = "title";
     p.textContent = "default Title"
@@ -87,6 +87,19 @@ class ProductItem extends HTMLElement {
     cost.textContent = "default";
 
     let clickButton = document.createElement("button");
+    clickButton.onclick = function(e){
+    let cartCount = document.getElementById("cart-count");
+      if (clickButton.textContent == "Add To Cart"){
+        clickButton.textContent = "Remove From Cart";
+        cartCount.innerText = (Number(cartCount.innerText) + 1).toString(); 
+      }
+
+      else{
+        clickButton.textContent = "Add To Cart";
+        cartCount.innerText = (Number(cartCount.innerText) - 1).toString(); 
+      }
+
+    }
     clickButton.textContent = "Add To Cart";
 
     shadow.appendChild(style);
