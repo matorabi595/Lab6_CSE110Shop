@@ -115,6 +115,22 @@ class ProductItem extends HTMLElement {
 
     }
 
+    /*let storage = window.localStorage;
+    let cart = JSON.parse(storage.getItem("cart"));
+
+    if(!cart){
+      cart = {};
+    }
+
+    let key = "item-" + li.dataset.id;
+    console.log("key", key);
+    if(key in cart){
+      clickButton.textContent = "Remove From Cart";
+    }
+    else{
+      clickButton.textContent = "Add To Cart";
+    }*/
+
     shadow.appendChild(style);
     shadow.appendChild(li);
     li.appendChild(pic);
